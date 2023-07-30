@@ -1,0 +1,23 @@
+{
+    "size":[200, 200],
+    "palette": {
+        "atlas":"owatlas.png",
+        "atlas_size":[16,16],
+        "path":"assets/textures/",
+        "tiles":{
+            "grass":{"id":0, "position":[0,0]},
+            "stone":{"id":1, "position":[1,0]}
+        }
+    },
+    "output": {
+        "output_folder":"output/data",
+        "file_name":"data",
+        "produce_data_mapper":true
+    },
+    "config": {
+        "background": "assets/berkbg.jpg",
+        "tilemap_bg": "",
+        "tilemap_grid_color_0": [0,0,0,255],
+        "tilemap_grid_color_1": [20,20,20,255]
+    }
+}
