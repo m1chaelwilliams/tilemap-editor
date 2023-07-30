@@ -7,7 +7,7 @@ from utils import EventHandler
 
 class Editor:
     def __init__(self, screen: pygame.Surface) -> None:
-
+        self.screen = screen
         # vars
         Editor.TILESIZE = TILESIZE
         self.active_slot = 0
@@ -28,12 +28,6 @@ class Editor:
                             TILESIZE, 
                             TILESIZE)
             )})
-
-        print(self.palette)
-
-        
-
-        
 
         self.tilemap_surface = pygame.Surface((Editor.TILESIZE * self.TILEMAP_SIZE[0], Editor.TILESIZE * self.TILEMAP_SIZE[1]))
         
@@ -103,7 +97,6 @@ class Editor:
             position = [mouse_pos[0] - self.tile_map_rect.x, mouse_pos[1] - self.tile_map_rect.y]
             coord = (position[0] // Editor.TILESIZE, position[1] // Editor.TILESIZE)
             if coord not in self.tiles:
-                print('placed!')
                 tile_pos = ((position[0] // Editor.TILESIZE) * TILESIZE, (position[1] // Editor.TILESIZE) * TILESIZE)
                 self.tiles[coord] = {'position': tile_pos, 
                                      'image':self.palette[self.active_slot]['image'],
