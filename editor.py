@@ -78,10 +78,11 @@ class Editor:
                         for x, id in enumerate(row):
                             for name, item in self.data['palette']['tiles'].items():
                                 if item['id'] == int(id):
-                                    layer[(x,y)] = {'position': (x*Editor.TILESIZE, y*Editor.TILESIZE), 
-                                                    'image':self.palette[item['id']]['image'],
-                                                    'id':item['id'],
-                                                    'layer':index}
+                                    if x < self.data['size'][0] and y < self.data['size'][1]:
+                                        layer[(x,y)] = {'position': (x*Editor.TILESIZE, y*Editor.TILESIZE), 
+                                                        'image':self.palette[item['id']]['image'],
+                                                        'id':item['id'],
+                                                        'layer':index}
                 
                 self.layers.append(layer)
         else:
@@ -171,7 +172,7 @@ class Editor:
             index = 0
             for item in self.palette:
                 
-                self.screen.blit(item['image'], (index * Editor.TILESIZE, self.screen.get_height() - (Editor.TILESIZE * 2)))
+                self.screen.blit(item['image'], (index * Editor.TILESIZE + Editor.TILESIZE, self.screen.get_height() - (Editor.TILESIZE * 2)))
                 if index == self.active_slot:
                     pygame.draw.rect(self.screen, 
                                      "white", 

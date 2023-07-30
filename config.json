@@ -21,7 +21,7 @@
         "produce_data_mapper":true
     },
     "config": {
-        "layers":false,
+        "layers":true,
         "layer_leader":"layer",
         "background": "assets/berkbg.jpg",
         "tilemap_bg": "",
