@@ -5,14 +5,14 @@
         "atlas_size":[16,16],
         "path":"assets/textures/",
         "tiles":{
-            "stone_wall":{"id":0, "position":[0,0], "custom": {"groups": ["sprite_group", "block_group"]}},
-            "door":{"id":1, "position":[1,0], "custom": {"groups": ["sprite_group", "block_group"]}},
-            "floor":{"id":2, "position":[2,0], "custom": {"groups": ["sprite_group"]}}
+            "wall":{"id":0, "position":[0,0], "custom": {"groups": ["sprite_group", "block_group"]}},
+            "floor":{"id":1, "position":[1,0], "custom": {"groups": ["background_group"]}},
+            "torch":{"id":2, "position":[0,1], "custom": {"groups": ["sprite_group", "light_group"]}}
         }
     },
     "input": {
         "files": [
-            "input/data/data.csv"
+            "input/data/layer0-data.csv"
         ]
     },
     "output": {

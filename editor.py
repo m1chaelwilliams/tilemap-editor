@@ -30,6 +30,8 @@ class Editor:
                             TILESIZE)
             )})
 
+        
+
         self.tilemap_surface = pygame.Surface((Editor.TILESIZE * self.TILEMAP_SIZE[0], Editor.TILESIZE * self.TILEMAP_SIZE[1]))
         
         if self.data['config']['tilemap_bg']:
@@ -77,12 +79,18 @@ class Editor:
                     for y, row in enumerate(reader):
                         for x, id in enumerate(row):
                             for name, item in self.data['palette']['tiles'].items():
-                                if item['id'] == int(id):
+                                if item['id'] == round(float(id)):
                                     if x < self.data['size'][0] and y < self.data['size'][1]:
+                                        image = self.palette[item['id']]['image'].copy()
+                                        if item['id'] != round(float(id), 1):
+                                            rot = round(float(id), 1) - int(item['id'])
+                                            
+                                            image = pygame.transform.rotate(self.palette[item['id']]['image'], 90 * int(rot*10))
+
                                         layer[(x,y)] = {'position': (x*Editor.TILESIZE, y*Editor.TILESIZE), 
-                                                        'image':self.palette[item['id']]['image'],
+                                                        'image':image,
                                                         'id':item['id'],
-                                                        'layer':index}
+                                                        'layer':index,}
                 
                 self.layers.append(layer)
         else:
@@ -94,6 +102,7 @@ class Editor:
         self.palette_open: bool = True
         self.active_layer = 0
         self.layers_on = self.data['config']['layers']
+        self.rotation = 0
 
         # assets
         self.bg = pygame.image.load(self.data['config']['background']).convert()
@@ -120,10 +129,18 @@ class Editor:
                 self.layers.append({})
                 print('created new layer!')
             if coord not in self.layers[self.active_layer]:
+                id = self.palette[self.active_slot]['id']
+                image = self.palette[self.active_slot]['image'].copy()
+                if self.rotation > 0:
+                    
+                    for rot in range(self.rotation):
+                        id += 0.1
+                    image = pygame.transform.rotate(self.palette[self.active_slot]['image'], 90 * self.rotation)
+
                 tile_pos = ((position[0] // Editor.TILESIZE) * TILESIZE, (position[1] // Editor.TILESIZE) * TILESIZE)
                 self.layers[self.active_layer][coord] = {'position': tile_pos, 
-                                                        'image':self.palette[self.active_slot]['image'],
-                                                        'id':self.palette[self.active_slot]['id'],
+                                                        'image':image,
+                                                        'id':round(id, 1),
                                                         'layer':self.active_layer}
         # removing
         if EventHandler.clicked(3) and self.tile_map_rect.collidepoint(mouse_pos):
@@ -158,6 +175,12 @@ class Editor:
                 if self.active_layer < 0:
                     self.active_layer = 0
                 print(self.active_layer)
+        
+        if EventHandler.keydown(pygame.K_r):
+            self.rotation += 1
+            if self.rotation > 3:
+                self.rotation = 0
+            print(self.rotation)
 
         # --- drawing ---
 
