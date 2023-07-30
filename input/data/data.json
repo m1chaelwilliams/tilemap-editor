@@ -1,0 +1,1 @@
+{"stone_wall": {"id": 0, "position": [0, 0], "custom": {"groups": ["sprite_group", "block_group"]}}, "door": {"id": 1, "position": [1, 0], "custom": {"groups": ["sprite_group", "block_group"]}}, "floor": {"id": 2, "position": [2, 0], "custom": {"groups": ["sprite_group"]}}}

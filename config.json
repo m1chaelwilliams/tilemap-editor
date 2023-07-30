@@ -1,13 +1,19 @@
 {
     "size":[200, 200],
     "palette": {
-        "atlas":"owatlas.png",
+        "atlas":"atlas.png",
         "atlas_size":[16,16],
         "path":"assets/textures/",
         "tiles":{
-            "grass":{"id":0, "position":[0,0]},
-            "stone":{"id":1, "position":[1,0]}
+            "stone_wall":{"id":0, "position":[0,0], "custom": {"groups": ["sprite_group", "block_group"]}},
+            "door":{"id":1, "position":[1,0], "custom": {"groups": ["sprite_group", "block_group"]}},
+            "floor":{"id":2, "position":[2,0], "custom": {"groups": ["sprite_group"]}}
         }
+    },
+    "input": {
+        "files": [
+            "input/data/data.csv"
+        ]
     },
     "output": {
         "output_folder":"output/data",
@@ -15,9 +21,14 @@
         "produce_data_mapper":true
     },
     "config": {
+        "layers":false,
+        "layer_leader":"layer",
         "background": "assets/berkbg.jpg",
         "tilemap_bg": "",
         "tilemap_grid_color_0": [0,0,0,255],
         "tilemap_grid_color_1": [20,20,20,255]
+    },
+    "export": {
+        "image_gridlines":false
     }
 }
