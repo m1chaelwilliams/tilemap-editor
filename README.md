@@ -14,3 +14,6 @@ There is a decent amount of customization in this project. You can change:
 - Tilemap Background? (optional)
 - Tilemap grid colors? (optional)
 - Tilemap canvas size (Mandatory)
+
+All configurations are made in the "config.json" file. I find this to be more intuitive than having to click through
+a ton of menus on startup.
